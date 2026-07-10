@@ -59,7 +59,7 @@ export default async function handler(req, res) {
   };
 
   try {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${process.env.GEMINI_API_KEY}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${process.env.GEMINI_API_KEY}`;
     
     console.log("API Key cargada:", process.env.GEMINI_API_KEY ? "Sí, longitud " + process.env.GEMINI_API_KEY.length : "NO, está undefined");
     
