@@ -1,0 +1,91 @@
+@media (min-width: 768px) {
+  .header {
+    padding: 0 2rem;
+  }
+
+  .header__brand {
+    font-size: 1.5rem;
+  }
+
+  .nav__link {
+    font-size: 1rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .view-content {
+    padding: 3rem 2rem;
+  }
+
+  .home__title {
+    font-size: 2.6rem;
+  }
+
+  .home__description {
+    font-size: 1.05rem;
+  }
+
+  .about__title {
+    font-size: 2.2rem;
+  }
+
+  .about__section p {
+    font-size: 1rem;
+  }
+
+  .message {
+    max-width: 65%;
+    font-size: 1rem;
+  }
+
+  .composer {
+    padding: 1rem 2rem;
+  }
+
+  .composer__input,
+  .composer__send {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    padding: 0 3rem;
+  }
+
+  .header__brand {
+    font-size: 1.7rem;
+  }
+
+  .nav__link {
+    font-size: 1.05rem;
+  }
+
+  .view-content {
+    max-width: 720px;
+    padding: 4rem 2rem;
+  }
+
+  .home__title {
+    font-size: 3rem;
+  }
+
+  .home__description {
+    font-size: 1.1rem;
+  }
+
+  .about__title {
+    font-size: 2.5rem;
+  }
+
+  .messages {
+    padding: 1.5rem 2rem;
+  }
+
+  .composer {
+    padding: 1rem 2rem;
+  }
+
+  .message {
+    max-width: 55%;
+  }
+}

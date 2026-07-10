@@ -1,0 +1,28 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg: #0d1117;
+  --color-surface: #161b22;
+  --color-border: #30363d;
+  --color-text: #e6edf3;
+  --color-text-muted: #8b949e;
+  --color-accent: #c62828;
+  --color-user-bubble: #b71c1c;
+  --color-char-bubble: #21262d;
+  --radius-bubble: 1rem;
+  --font-base: system-ui, sans-serif;
+  --font-display: "Orbitron", system-ui;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-base);
+  min-height: 100vh;
+  min-height: 100dvh;
+  line-height: 1.6;
+}

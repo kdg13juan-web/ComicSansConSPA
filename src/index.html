@@ -1,18 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ComicSansCon</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatAvengers — Iron Man</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <section id="chat-section">
-        <div id="messages"></div>
-        <form id="chat-form">
-            <input type="text" id="user-input" placeholder="Type your message here..." autocomplete="off" required>
-            <button type="submit">Send</button>
-        </form>
-    </section>
+  <div class="app">
+    <header class="header">
+      <a href="/home" class="header__brand">
+        <span class="brand-chat">Chat</span><span class="brand-vengers">Avengers</span>
+      </a>
+      <nav class="nav">
+        <a href="/home" class="nav__link">Inicio</a>
+        <a href="/chat" class="nav__link">Chat</a>
+        <a href="/about" class="nav__link">Acerca de</a>
+      </nav>
+    </header>
+    <main class="view" id="view-container">
+      <!-- renderizado dinámico por app.js -->
+    </main>
+  </div>
+
+  <script type="module" src="app.js"></script>
 </body>
 </html>

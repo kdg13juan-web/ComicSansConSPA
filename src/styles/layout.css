@@ -1,0 +1,21 @@
+.app {
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.view-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem;
+  padding-bottom: 4rem;
+}
