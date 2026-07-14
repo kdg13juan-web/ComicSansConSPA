@@ -138,7 +138,7 @@
   pointer-events: none;
 }
 
-.luffy-avatar {
+.x-avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -261,9 +261,30 @@
 
 .chat-toolbar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 0.35rem 1rem 0;
   flex-shrink: 0;
+}
+
+.chat-back {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0.25rem 0.4rem;
+  border-radius: 0.3rem;
+  transition: color 0.15s, background 0.15s;
+  opacity: 0.6;
+}
+
+.chat-back:hover {
+  color: var(--color-text);
+  background: var(--color-surface);
+  opacity: 1;
 }
 
 .chat-clear {

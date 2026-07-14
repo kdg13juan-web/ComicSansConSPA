@@ -1,30 +1,69 @@
-import { initChat, clearChat } from "./chat.js";
+import { initChat, clearChat, setCharacter } from "./chat.js";
+import { characters } from "./characters.js";
 
 const container = () => document.getElementById("view-container");
 
-function renderHome() {
+function renderCharacterSelect() {
   container().innerHTML = `
     <div class="view-content">
-      <img src="assets/ironman-avatar.png" alt="Iron Man" class="home__avatar" />
-      <p class="home__eyebrow">Tony Stark · Iron Man</p>
-      <h1 class="home__title">Yo soy Iron Man</h1>
-      <p class="home__description">
-        Tony Stark es un genio, multimillonario, playboy y filántropo. 
-        Dueño de Stark Industries y creador de la armadura Iron Man. 
-        Miembro fundador de los Avengers. ¿Listo para charlar?
-      </p>
+      <h1 class="select__title">Elige tu personaje</h1>
+      <div class="character-grid">
+        ${Object.values(characters).map(char => `
+          <div class="character-card" data-id="${char.id}" style="--card-accent: ${char.accentColor}">
+            <div class="flip-content">
+              <div class="flip-card-back">
+                <img src="${char.fullBody}" alt="${char.name}" class="flip-card-image" />
+              </div>
+              <div class="flip-card-front">
+                <h2 class="character-card__name">${char.name}</h2>
+                <p class="character-card__fullname">${char.fullName}</p>
+                <p class="character-card__desc">${char.description}</p>
+                <button class="btn character-card__btn">Seleccionar</button>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  document.querySelectorAll('.character-card').forEach(card => {
+    card.addEventListener('click', () => {
+      navigateTo(`/home/${card.dataset.id}`);
+    });
+  });
+}
+
+function renderCharacter(charId) {
+  const char = characters[charId];
+  if (!char) return renderNotFound();
+
+  container().innerHTML = `
+    <div class="view-content">
+      <img src="${char.avatar}" alt="${char.name}" class="home__avatar" />
+      <p class="home__eyebrow">${char.fullName} · ${char.name}</p>
+      <h1 class="home__title">Yo soy ${char.name}</h1>
+      <p class="home__description">${char.description}</p>
       <button class="btn" id="btn-chat">Empezar a chatear</button>
     </div>
   `;
-  document
-    .getElementById("btn-chat")
-    .addEventListener("click", () => navigateTo("/chat"));
+
+  document.getElementById("btn-chat").addEventListener("click", () => {
+    navigateTo(`/chat/${charId}`);
+  });
 }
 
-function renderChat() {
+function renderChatWithCharacter(charId) {
+  const char = characters[charId];
+  if (!char) return renderNotFound();
+
   container().innerHTML = `
     <div class="chat-layout">
       <div class="chat-toolbar">
+        <button class="chat-back" id="btn-back" title="Volver">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+          Volver
+        </button>
         <button class="chat-clear" id="btn-clear-chat" title="Limpiar conversación">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/>
@@ -34,8 +73,8 @@ function renderChat() {
       </div>
       <section class="messages" id="messages-container">
         <div class="typing-indicator" id="typing-indicator">
-          <img src="assets/ironman-avatar.png" alt="Iron Man" class="luffy-avatar" />
-          <span>Iron Man está escribiendo</span>
+          <img src="${char.avatar}" alt="${char.name}" class="x-avatar" />
+          <span>${char.typingText}</span>
           <div class="typing-dots">
             <i></i><i></i><i></i>
           </div>
@@ -61,10 +100,16 @@ function renderChat() {
       </form>
     </div>
   `;
+
+  setCharacter(charId);
   initChat();
 
   document.getElementById("btn-clear-chat").addEventListener("click", () => {
     if (confirm("¿Borrar la conversación?")) clearChat();
+  });
+
+  document.getElementById("btn-back").addEventListener("click", () => {
+    navigateTo("/home");
   });
 }
 
@@ -109,9 +154,14 @@ function renderNotFound() {
 }
 
 const routes = {
-  "/": renderHome,
-  "/home": renderHome,
-  "/chat": renderChat,
+  "/": renderCharacterSelect,
+  "/home": renderCharacterSelect,
+  "/home/ironman": () => renderCharacter("ironman"),
+  "/home/capitan": () => renderCharacter("capitan"),
+  "/home/spiderman": () => renderCharacter("spiderman"),
+  "/chat/ironman": () => renderChatWithCharacter("ironman"),
+  "/chat/capitan": () => renderChatWithCharacter("capitan"),
+  "/chat/spiderman": () => renderChatWithCharacter("spiderman"),
   "/about": renderAbout,
 };
 

@@ -1,6 +1,8 @@
 import { formatMessage, isValidMessage } from "./utils.js";
+import { characters } from "./characters.js";
 
 let messages = [];
+let currentCharacter = null;
 
 export function resetMessages() {
   messages = [];
@@ -9,6 +11,15 @@ export function resetMessages() {
 export function clearChat() {
   messages = [];
   renderMessages();
+}
+
+export function setCharacter(charId) {
+  currentCharacter = characters[charId] || characters.ironman;
+  messages = [];
+}
+
+function getChar() {
+  return currentCharacter || characters.ironman;
 }
 
 const ICON_COPY = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>`;
@@ -48,15 +59,16 @@ function renderMessages() {
   if (!container) return;
 
   const indicator = document.getElementById("typing-indicator");
+  const char = getChar();
 
   container.innerHTML = "";
 
   if (messages.length === 0) {
     container.innerHTML = `
       <div class="chat-empty">
-        <img src="assets/reactor.png" alt="Reactor Ark" class="chat-empty__hat" />
-        <p class="chat-empty__title">¡Bienvenido al taller!</p>
-        <p class="chat-empty__hint">Escribí tu primer mensaje para hablar con Iron Man.</p>
+        <img src="${char.bubbleIcon}" alt="${char.name}" class="chat-empty__hat" />
+        <p class="chat-empty__title">${char.welcomeTitle}</p>
+        <p class="chat-empty__hint">${char.welcomeHint}</p>
       </div>
     `;
     if (indicator) container.appendChild(indicator);
@@ -86,7 +98,7 @@ function renderMessages() {
       el.textContent = msg.content;
 
       const hat = document.createElement("img");
-      hat.src = "assets/reactor.png";
+      hat.src = char.bubbleIcon;
       hat.alt = "";
       hat.className = "bubble-hat";
       hat.width = 44;
@@ -128,13 +140,15 @@ async function sendToGemini(input, btn) {
 
   showTyping();
 
+  const char = getChar();
+
   try {
     const payload = messages.slice(-12);
 
     const response = await fetch("/api/functions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: payload }),
+      body: JSON.stringify({ messages: payload, character: char.id }),
     });
 
     const data = await response.json();
@@ -145,9 +159,7 @@ async function sendToGemini(input, btn) {
 
     addMessage("character", data.reply);
   } catch (err) {
-    const msg =
-      err.message || "Iron Man está en el taller, intentá de nuevo.";
-    addMessage("character", msg);
+    addMessage("character", `${char.name} está en el taller, intentá de nuevo.`);
   } finally {
     if (input) input.disabled = false;
     if (btn) btn.disabled = false;
