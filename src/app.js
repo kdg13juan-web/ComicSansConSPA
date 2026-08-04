@@ -156,6 +156,7 @@ function renderNotFound() {
 const routes = {
   "/": renderCharacterSelect,
   "/home": renderCharacterSelect,
+  "/chat": renderCharacterSelect,
   "/home/ironman": () => renderCharacter("ironman"),
   "/home/capitan": () => renderCharacter("capitan"),
   "/home/spiderman": () => renderCharacter("spiderman"),
