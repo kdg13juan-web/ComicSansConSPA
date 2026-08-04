@@ -5,7 +5,10 @@ const container = () => document.getElementById("view-container");
 
 function renderHome() {
   container().innerHTML = `
-    <div class="view-content home-hero">
+    <div class="view-content home-hero home-hero--video">
+      <video class="home-video" autoplay muted loop playsinline poster="/assets/Marvelportada.mp4">
+        <source src="/assets/Marvelportada.mp4" type="video/mp4" />
+      </video>
       <div class="home-hero__content">
         <p class="home-hero__eyebrow">Bienvenidos a ComicSansCon</p>
         <h1 class="home-hero__title">Los Avengers, reunidos para hablar contigo</h1>
@@ -32,7 +35,10 @@ function renderHome() {
 
 function renderCharacterSelect() {
   container().innerHTML = `
-    <div class="view-content">
+    <div class="view-content home-hero--video home-select">
+      <video class="home-video" autoplay muted loop playsinline poster="/assets/Marvelportada.mp4">
+        <source src="/assets/Marvelportada.mp4" type="video/mp4" />
+      </video>
       <h1 class="select__title">Elige tu personaje</h1>
       <div class="character-grid">
         ${Object.values(characters).map(char => `
