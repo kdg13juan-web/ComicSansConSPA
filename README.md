@@ -1,6 +1,6 @@
 # ChatVengers
 
-SPA de chat con personajes de Marvel (Iron Man, Captain America, Spider-Man) usando Google Gemini AI.
+SPA de chat con personajes de Marvel (Iron Man, Capitán America, Spider-Man) usando Google Gemini AI.
 
 ## Stack
 

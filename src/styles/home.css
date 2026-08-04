@@ -1,3 +1,106 @@
+.home-hero {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.home-hero__content,
+.home-hero__panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+}
+
+.home-hero__eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+}
+
+.home-hero__title {
+  font-size: 2rem;
+  line-height: 1.1;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.home-hero__description {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.home-hero__actions,
+.home__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn--ghost {
+  background: transparent;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+}
+
+.btn--small {
+  padding: 0.45rem 0.9rem;
+  min-height: auto;
+  font-size: 0.8rem;
+}
+
+.character-detail {
+  position: relative;
+  padding-top: 3rem;
+}
+
+.character-detail__back {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+}
+
+.character-detail__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.home-hero__panel h2 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.home-hero__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.home-hero__list li {
+  padding-left: 1rem;
+  position: relative;
+}
+
+.home-hero__list li::before {
+  content: '•';
+  color: var(--color-accent);
+  position: absolute;
+  left: 0;
+}
+
 .home__avatar {
   width: 120px;
   height: 120px;
@@ -37,7 +140,9 @@
 }
 
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: var(--color-accent);
   color: #fff;
   font-weight: 600;
@@ -48,17 +153,14 @@
   font-size: 0.95rem;
   text-decoration: none;
   transition: opacity 0.15s;
+  min-height: 2.75rem;
+  line-height: 1.2;
 }
 
 .btn:hover {
   opacity: 0.85;
 }
 
-#btn-chat {
-  display: block;
-  width: fit-content;
-  margin: 0 auto;
-}
 
 .select__title {
   font-size: 1.8rem;
@@ -167,6 +269,11 @@
 }
 
 @media (min-width: 768px) {
+  .home-hero {
+    grid-template-columns: 1.4fr 0.9fr;
+    gap: 2rem;
+  }
+
   .character-grid {
     flex-direction: row;
     gap: 2rem;

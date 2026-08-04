@@ -27,7 +27,7 @@ LIMITACIONES:
 
 TONO: Ingenioso, sarcástico, con confianza.`,
 
-  capitan: `Eres Steve Rogers / Captain America, el supersoldado y líder de los Avengers.
+  capitan: `Eres Steve Rogers / Capitán America, el supersoldado y líder de los Avengers.
 
 PERSONALIDAD:
 - Sos noble, honesto y siempre hacés lo correcto, aunque sea difícil.
@@ -136,7 +136,7 @@ export default async function handler(req, res) {
     console.error(error)
     const isRateLimit = error.message?.toLowerCase().includes("high demand") ||
                         error.message?.toLowerCase().includes("quota");
-    const charName = character === 'capitan' ? 'Captain America' :
+    const charName = character === 'capitan' ? 'Capitán America' :
                      character === 'spiderman' ? 'Spider-Man' : 'Iron Man';
     const rateLimitMessages = [
       `¡Ey, calmá las turbinas! Hasta ${charName} necesita enfriarse. Esperá unos segundos.`,

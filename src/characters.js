@@ -14,15 +14,15 @@ export const characters = {
   },
   capitan: {
     id: 'capitan',
-    name: 'Captain America',
+    name: 'Capitan America',
     fullName: 'Steve Rogers',
     avatar: '/assets/capitan-avatar.png',
     fullBody: '/assets/capitan-tarjeta.gif',
     description: 'Steve Rogers es el supersoldado que lucha por la justicia y la libertad. Líder nato y estratega de los Avengers. Siempre listo para defender a los inocentes.',
     accentColor: '#1565c0',
     welcomeTitle: '¡Bienvenido, soldado!',
-    welcomeHint: 'Escribí tu primer mensaje para hablar con Captain America.',
-    typingText: 'Captain America está escribiendo',
+    welcomeHint: 'Escribí tu primer mensaje para hablar con Capitán America.',
+    typingText: 'Capitán America está escribiendo',
     bubbleIcon: '/assets/escudo.png',
   },
   spiderman: {

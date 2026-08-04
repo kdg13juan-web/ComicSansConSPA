@@ -32,6 +32,32 @@ beforeEach(() => {
   setupDOM();
 });
 
+describe('portada de inicio', () => {
+  it('muestra la portada cuando la ruta es /inicio', async () => {
+    document.body.innerHTML = '<main id="view-container"></main>';
+    window.history.replaceState({}, '', '/inicio');
+    vi.resetModules();
+
+    await import('../src/app.js');
+
+    const container = document.getElementById('view-container');
+    expect(container.textContent).toContain('Los Avengers');
+  });
+});
+
+describe('navegación de personajes', () => {
+  it('abre el chat desde la ruta /chat/ironman', async () => {
+    document.body.innerHTML = '<main id="view-container"></main>';
+    window.history.replaceState({}, '', '/chat/ironman');
+    vi.resetModules();
+
+    await import('../src/app.js');
+
+    const container = document.getElementById('view-container');
+    expect(container.textContent).toContain('Iron Man');
+  });
+});
+
 describe('sendToGemini — caso exitoso', () => {
   it('llama a /api/functions con método POST', async () => {
     fetch.mockResolvedValueOnce({

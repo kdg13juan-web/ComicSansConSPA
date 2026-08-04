@@ -3,6 +3,33 @@ import { characters } from "./characters.js";
 
 const container = () => document.getElementById("view-container");
 
+function renderHome() {
+  container().innerHTML = `
+    <div class="view-content home-hero">
+      <div class="home-hero__content">
+        <p class="home-hero__eyebrow">Bienvenidos a ComicSansCon</p>
+        <h1 class="home-hero__title">Los Avengers, reunidos para hablar contigo</h1>
+        <p class="home-hero__description">
+          Descubre a tus héroes favoritos y vive conversaciones con Iron Man, Capitán América y Spider-Man.
+          Cada personaje tiene su propia personalidad, su voz y su forma de responder en los chats.
+        </p>
+        <div class="home-hero__actions">
+          <a href="/home" class="btn">Explorar personajes</a>
+          <a href="/about" class="btn btn--ghost">Conocer más</a>
+        </div>
+      </div>
+      <div class="home-hero__panel">
+        <h2>¿Qué podrás hacer?</h2>
+        <ul class="home-hero__list">
+          <li>Hablar con los Avengers como si fueran personajes reales</li>
+          <li>Descubrir sus personalidades únicas en cada conversación</li>
+          <li>Elegir a tu héroe favorito y empezar a interactuar</li>
+        </ul>
+      </div>
+    </div>
+  `;
+}
+
 function renderCharacterSelect() {
   container().innerHTML = `
     <div class="view-content">
@@ -39,17 +66,24 @@ function renderCharacter(charId) {
   if (!char) return renderNotFound();
 
   container().innerHTML = `
-    <div class="view-content">
+    <div class="view-content character-detail">
+      <button class="btn btn--small character-detail__back" id="btn-home">Volver</button>
       <img src="${char.avatar}" alt="${char.name}" class="home__avatar" />
       <p class="home__eyebrow">${char.fullName} · ${char.name}</p>
       <h1 class="home__title">Yo soy ${char.name}</h1>
       <p class="home__description">${char.description}</p>
-      <button class="btn" id="btn-chat">Empezar a chatear</button>
+      <div class="character-detail__actions">
+        <button class="btn btn--small btn--ghost" id="btn-chat">Empezar a chatear</button>
+      </div>
     </div>
   `;
 
   document.getElementById("btn-chat").addEventListener("click", () => {
     navigateTo(`/chat/${charId}`);
+  });
+
+  document.getElementById("btn-home").addEventListener("click", () => {
+    navigateTo("/home");
   });
 }
 
@@ -109,7 +143,7 @@ function renderChatWithCharacter(charId) {
   });
 
   document.getElementById("btn-back").addEventListener("click", () => {
-    navigateTo("/home");
+    navigateTo(`/home/${charId}`);
   });
 }
 
@@ -154,9 +188,9 @@ function renderNotFound() {
 }
 
 const routes = {
-  "/": renderCharacterSelect,
+  "/": renderHome,
+  "/inicio": renderHome,
   "/home": renderCharacterSelect,
-  "/chat": renderCharacterSelect,
   "/home/ironman": () => renderCharacter("ironman"),
   "/home/capitan": () => renderCharacter("capitan"),
   "/home/spiderman": () => renderCharacter("spiderman"),
@@ -167,7 +201,15 @@ const routes = {
 };
 
 function router() {
-  const render = routes[window.location.pathname];
+  const pathname = window.location.pathname;
+
+  if (pathname === "/chat") {
+    history.replaceState(null, "", "/home");
+    router();
+    return;
+  }
+
+  const render = routes[pathname];
   render ? render() : renderNotFound();
 }
 
