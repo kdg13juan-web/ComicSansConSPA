@@ -44,7 +44,7 @@ export const characters = {
     fullName: 'Bruce Banner',
     avatar: '/assets/hulk-avatar.png',
     fullBody: '/assets/hulk-tarjeta.gif',
-    description: 'Bruce Banner es el científico que se convierte en el increíble Hulk cuando entra en estado de ira. Su fuerza es casi ilimitada, pero su control emocional es un desafío constante.',
+    description: 'Bruce Banner es el científico que se convierte en el increíble Hulk cuando entra en estado de ira.',
     accentColor: '#388e3c',
     welcomeTitle: '¡Bienvenido, Gigante!',
     welcomeHint: 'Escribí tu primer mensaje para hablar con Hulk.',
