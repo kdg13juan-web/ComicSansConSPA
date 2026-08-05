@@ -30,8 +30,8 @@ Una **Single Page Application** donde podés elegir a tu héroe favorito de los 
 <div align="center">
 
 
-Pantalla de inicio| ![Pantalla de inicio](src/assets/screenshots/inicio.png) Presentacion del Personaje|
-![Presentacion del Personaje](src/assets/screenshots/Presentacion.png) Responsive| 
+Pantalla de inicio ![Pantalla de inicio](src/assets/screenshots/inicio.png) Presentacion del Personaje
+![Presentacion del Personaje](src/assets/screenshots/Presentacion.png) Responsive
 ![Responsive](src/assets/screenshots/Responsive.png) 
 
 </div>
