@@ -30,13 +30,13 @@ Una **Single Page Application** donde podés elegir a tu héroe favorito de los 
 <div align="center">
 
 
-| ![Pantalla de inicio](src/assets/screenshots/inicio.png) |
-![Presentacion del Personaje](src/assets/screenshots/Presentacion.png) | 
-![Responsive](src/assets/screenshots/Responsive.png) |
+Pantalla de inicio| ![Pantalla de inicio](src/assets/screenshots/inicio.png) Presentacion del Personaje|
+![Presentacion del Personaje](src/assets/screenshots/Presentacion.png) Responsive| 
+![Responsive](src/assets/screenshots/Responsive.png) 
 
 </div>
 
-> 💡 Tip: guardá las capturas en `src/assets/screenshots/` y reemplazá estas celdas con `![alt](ruta)`.
+
 
 ---
 
