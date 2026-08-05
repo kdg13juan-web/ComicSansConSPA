@@ -13,7 +13,7 @@ function renderHome() {
         <p class="home-hero__eyebrow">Bienvenidos a ComicSansCon</p>
         <h1 class="home-hero__title">Los Avengers, reunidos para hablar contigo</h1>
         <p class="home-hero__description">
-          Descubre a tus héroes favoritos y vive conversaciones con Iron Man, Capitán América y Spider-Man.
+          Descubre a tus héroes favoritos y vive conversaciones con Iron Man, Capitán América, Spider-Man, Hulk y Thor.
           Cada personaje tiene su propia personalidad, su voz y su forma de responder en los chats.
         </p>
         <div class="home-hero__actions">
@@ -24,7 +24,7 @@ function renderHome() {
       <div class="home-hero__panel">
         <h2>¿Qué podrás hacer?</h2>
         <ul class="home-hero__list">
-          <li>Hablar con los Avengers como si fueran personajes reales</li>
+          <li>Hablar con los 5 Avengers como si fueran personajes reales</li>
           <li>Descubrir sus personalidades únicas en cada conversación</li>
           <li>Elegir a tu héroe favorito y empezar a interactuar</li>
         </ul>

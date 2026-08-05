@@ -210,25 +210,27 @@
 }
 
 .character-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 200px));
   gap: 1.5rem;
-  align-items: center;
+  justify-content: center;
+  align-items: start;
 }
 
 .character-card {
   overflow: visible;
-  width: 200px;
-  height: 280px;
+  width: 100%;
+  height: 240px;
   perspective: 800px;
   cursor: pointer;
   background-image: linear-gradient(163deg, var(--card-accent) 0%, #3700ff 100%);
   border-radius: 20px;
-  transition: all .3s;
+  transition: all .35s ease;
 }
 
 .character-card:hover {
   box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+  transform: translateY(-6px);
 }
 
 .flip-content {
@@ -307,16 +309,24 @@
   margin-top: auto;
 }
 
+@media (max-width: 767px) {
+  .character-grid {
+    gap: 1rem;
+  }
+}
+
 @media (min-width: 768px) {
   .home-hero {
-    grid-template-columns: 1.4fr 0.9fr;
+    grid-template-columns: 1.5fr 0.75fr;
     gap: 2rem;
   }
 
   .character-grid {
-    flex-direction: row;
     gap: 2rem;
-    justify-content: center;
+  }
+
+  .character-card {
+    height: 300px;
   }
 
   .select__title {
