@@ -200,9 +200,13 @@ const routes = {
   "/home/ironman": () => renderCharacter("ironman"),
   "/home/capitan": () => renderCharacter("capitan"),
   "/home/spiderman": () => renderCharacter("spiderman"),
+  "/home/hulk": () => renderCharacter("hulk"),
+  "/home/thor": () => renderCharacter("thor"),
   "/chat/ironman": () => renderChatWithCharacter("ironman"),
   "/chat/capitan": () => renderChatWithCharacter("capitan"),
   "/chat/spiderman": () => renderChatWithCharacter("spiderman"),
+  "/chat/hulk": () => renderChatWithCharacter("hulk"),
+  "/chat/thor": () => renderChatWithCharacter("thor"),
   "/about": renderAbout,
 };
 

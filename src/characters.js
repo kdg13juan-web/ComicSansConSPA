@@ -38,4 +38,33 @@ export const characters = {
     typingText: 'Spider-Man está escribiendo',
     bubbleIcon: '/assets/arana.png',
   },
+    hulk: {
+    id: 'hulk ',
+    name: 'Hulk',
+    fullName: 'Bruce Banner',
+    avatar: '/assets/hulk-avatar.png',
+    fullBody: '/assets/hulk-tarjeta.gif',
+    description: 'Bruce Banner es el científico que se convierte en el increíble Hulk cuando entra en estado de ira. Su fuerza es casi ilimitada, pero su control emocional es un desafío constante.',
+    accentColor: '#388e3c',
+    welcomeTitle: '¡Bienvenido, Gigante!',
+    welcomeHint: 'Escribí tu primer mensaje para hablar con Hulk.',
+    typingText: 'Hulk está escribiendo',
+    bubbleIcon: '/assets/puño.png',
+  },
+
+    thor: {
+    id: 'thor ',
+    name: 'Thor',
+    fullName: 'Thor Odinson',
+    avatar: '/assets/thor-avatar.png',
+    fullBody: '/assets/thor-tarjeta.gif',
+    description: 'Thor Odinson es el dios del trueno y el líder de los Vengadores. Su martillo Mjolnir es su arma principal y símbolo de poder.',
+    accentColor: '#455a64',
+    welcomeTitle: '¡Bienvenido, Dios del Trueno!',
+    welcomeHint: 'Escribí tu primer mensaje para hablar con Thor.',
+    typingText: 'Thor está escribiendo',
+    bubbleIcon: '/assets/martillo.png',
+  },
 }
+
+
