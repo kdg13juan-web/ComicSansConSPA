@@ -39,7 +39,7 @@ export const characters = {
     bubbleIcon: '/assets/arana.png',
   },
     hulk: {
-    id: 'hulk ',
+    id: 'hulk',
     name: 'Hulk',
     fullName: 'Bruce Banner',
     avatar: '/assets/hulk-avatar.png',
@@ -53,7 +53,7 @@ export const characters = {
   },
 
     thor: {
-    id: 'thor ',
+    id: 'thor',
     name: 'Thor',
     fullName: 'Thor Odinson',
     avatar: '/assets/thor-avatar.png',
