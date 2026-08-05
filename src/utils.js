@@ -1,5 +1,5 @@
-export function formatMessage(role, content) {
-  return { role, content, timestamp: Date.now() };
+export function formatMessage(role, content, isError = false) {
+  return { role, content, timestamp: Date.now(), isError };
 }
 
 export function convertToGeminiFormat(messages) {

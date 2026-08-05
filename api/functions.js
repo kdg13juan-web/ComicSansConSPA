@@ -188,7 +188,7 @@ export default async function handler(req, res) {
     ];
     const message = isRateLimit
       ? rateLimitMessages[Math.floor(Math.random() * rateLimitMessages.length)]
-      : `${charName} está en el taller, intentá de nuevo.`;
+      : `El Vengador que buscas está en el taller, intentá de nuevo.`;
     return res.status(500).json({ error: message });
   }
 }

@@ -94,8 +94,20 @@ function renderMessages() {
       container.appendChild(el);
     } else {
       const el = document.createElement("div");
-      el.className = "message message--character";
-      el.textContent = msg.content;
+      el.className = msg.isError
+        ? "message message--character message--error"
+        : "message message--character";
+
+      if (msg.isError) {
+        const errorIcon = document.createElement("span");
+        errorIcon.className = "message__error-icon";
+        errorIcon.textContent = "⚠";
+        el.appendChild(errorIcon);
+      }
+
+      const text = document.createElement("span");
+      text.textContent = msg.content;
+      el.appendChild(text);
 
       const hat = document.createElement("img");
       hat.src = char.bubbleIcon;
@@ -117,8 +129,8 @@ function renderMessages() {
     last.scrollIntoView({ behavior: "smooth", block: "end" });
 }
 
-function addMessage(role, content) {
-  messages.push(formatMessage(role, content));
+function addMessage(role, content, isError = false) {
+  messages.push(formatMessage(role, content, isError));
   renderMessages();
 }
 
@@ -154,12 +166,19 @@ async function sendToGemini(input, btn) {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.error || `HTTP error: ${response.status}`);
+      // Error HTTP devuelto por el servidor (4xx / 5xx)
+      addMessage("character", data.error || `${char.name} está en el taller, intentá de nuevo.`, true);
+      return;
     }
 
     addMessage("character", data.reply);
   } catch (err) {
-    addMessage("character", `${char.name} está en el taller, intentá de nuevo.`);
+    // Error de red / fetch (sin conexión, CORS, servidor caído, etc.)
+    const isNetworkError = err instanceof TypeError;
+    const message = isNetworkError
+      ? "Sin conexión. Revisá tu internet e intentá de nuevo."
+      : `El Vengador que buscas está en el taller, intentá de nuevo.`;
+    addMessage("character", message, true);
   } finally {
     if (input) input.disabled = false;
     if (btn) btn.disabled = false;
