@@ -29,8 +29,7 @@ Una **Single Page Application** donde podés elegir a tu héroe favorito de los 
 
 <div align="center">
 
-| Inicio | Selección de héroe | Chat |
-|:---:|:---:|:---:|
+
 | ![Pantalla de inicio](src/assets/screenshots/inicio.png) |
 ![Presentacion del Personaje](src/assets/screenshots/Presentacion.png) | 
 ![Responsive](src/assets/screenshots/Responsive.png) |
