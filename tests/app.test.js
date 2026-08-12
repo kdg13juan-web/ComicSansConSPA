@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { initChat, resetMessages } from '../src/chat.js';
+import { initChat, resetMessages, setCharacter, clearChat } from '../src/chat.js';
 
 global.fetch = vi.fn();
 
@@ -29,6 +29,7 @@ const nextTick = () => new Promise((r) => setTimeout(r, 0));
 beforeEach(() => {
   fetch.mockClear();
   resetMessages();
+  localStorage.clear();
   setupDOM();
 });
 
@@ -115,5 +116,59 @@ describe('sendToGemini — caída de red', () => {
     const container = document.getElementById('messages-container');
     const errorBubble = container.querySelector('.message--character');
     expect(errorBubble).not.toBeNull();
+  });
+});
+
+describe('persistencia en localStorage', () => {
+  it('guarda los mensajes en localStorage al enviar', async () => {
+    fetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ reply: '¡Soy Iron Man!' }),
+    });
+
+    setCharacter('ironman');
+    submitMessage('Hola');
+    await nextTick();
+
+    const stored = JSON.parse(localStorage.getItem('chatvengers:ironman'));
+    expect(Array.isArray(stored)).toBe(true);
+    expect(stored.length).toBeGreaterThan(0);
+  });
+
+  it('restaura el historial guardado de un personaje', async () => {
+    localStorage.setItem(
+      'chatvengers:ironman',
+      JSON.stringify([{ role: 'user', content: 'Mensaje guardado ayer', timestamp: 1 }])
+    );
+    fetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ reply: '¡Recordado!' }),
+    });
+
+    setCharacter('ironman');
+    submitMessage('Hola');
+    await nextTick();
+
+    const container = document.getElementById('messages-container');
+    expect(container.textContent).toContain('Mensaje guardado ayer');
+    expect(container.textContent).toContain('¡Recordado!');
+  });
+
+  it('borra el historial del storage con clearChat', () => {
+    localStorage.setItem(
+      'chatvengers:ironman',
+      JSON.stringify([{ role: 'user', content: 'x', timestamp: 1 }])
+    );
+
+    setCharacter('ironman');
+    clearChat();
+
+    expect(localStorage.getItem('chatvengers:ironman')).toBeNull();
+  });
+
+  it('no rompe el chat si el JSON guardado está corrupto', () => {
+    localStorage.setItem('chatvengers:ironman', '{esto-no-es-json');
+    setCharacter('ironman');
+    localStorage.removeItem('chatvengers:ironman');
   });
 });

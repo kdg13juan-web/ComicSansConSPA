@@ -1,5 +1,6 @@
 import { formatMessage, isValidMessage } from "./utils.js";
 import { characters } from "./characters.js";
+import { loadMessages, saveMessages, clearMessages } from "./storage.js";
 
 let messages = [];
 let currentCharacter = null;
@@ -11,11 +12,12 @@ export function resetMessages() {
 export function clearChat() {
   messages = [];
   renderMessages();
+  clearMessages(getChar().id);
 }
 
 export function setCharacter(charId) {
   currentCharacter = characters[charId] || characters.ironman;
-  messages = [];
+  messages = loadMessages(currentCharacter.id);
 }
 
 function getChar() {
@@ -131,6 +133,7 @@ function renderMessages() {
 
 function addMessage(role, content, isError = false) {
   messages.push(formatMessage(role, content, isError));
+  saveMessages(getChar().id, messages);
   renderMessages();
 }
 
